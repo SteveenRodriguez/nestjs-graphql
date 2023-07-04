@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  POSTGRESQL:
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: AnyList
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - '5431:5432'
+    volumes:
+      - PGDATA:/var/lib/postgresql/data
+
+volumes:
+  PGDATA:
+    driver: local
